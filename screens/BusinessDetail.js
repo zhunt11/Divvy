@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 export default class BusinessDetail extends React.Component {
   render() {
-    return <View />;
+    return <Text>Hello, Detail View</Text>
   }
 }

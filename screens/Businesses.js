@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, FlatList, Text, SafeAreaView, StyleSheet, StatusBar } from 'react-native';
 import CompanyData from '../data.json'
+import { useNavigation } from '@react-navigation/native';
 
 export default class Businesses extends React.Component {
   render() {
@@ -23,10 +24,16 @@ const renderItem = ({ item }) => (
   <Item item={item} />
 );
 
+function createItem(item) {
+  const navigation = useNavigation();
+  return  (
+    <View style={styles.item}>
+      <Text style={styles.name} onPress={() => navigation.navigate("Profile", { item: item })}>{item.name}</Text>
+    </View>
+  )
+}
 const Item = ({ item }) => (
-  <View style={styles.item}>
-    <Text style={styles.name} onPress={() => navigation.navigate("CompanyDetail", { item: item })}>{item.name}</Text>
-  </View>
+  createItem(item)
 );
 
 const ItemSeparatorView = () => {
@@ -41,7 +48,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FFFFFF',
     padding: 12
   },
   name: {
