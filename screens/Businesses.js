@@ -5,6 +5,10 @@ import { useNavigation } from '@react-navigation/native';
 
 export default class Businesses extends React.Component {
   render() {
+    const renderItem = ({ item }) => (
+      <Item item={item} />
+    );
+    
     return (
       <SafeAreaView style={styles.container}>
       <FlatList
@@ -18,20 +22,15 @@ export default class Businesses extends React.Component {
   }
 }
 
-const screenPadding = 16;
-
-const renderItem = ({ item }) => (
-  <Item item={item} />
-);
-
 function createItem(item) {
   const navigation = useNavigation();
   return  (
     <View style={styles.item}>
-      <Text style={styles.name} onPress={() => navigation.navigate("Profile", { item: item })}>{item.name}</Text>
+      <Text style={styles.name} onPress={() => navigation.navigate("Profile")}>{item.name}</Text>
     </View>
   )
 }
+
 const Item = ({ item }) => (
   createItem(item)
 );
